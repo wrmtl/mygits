@@ -65,3 +65,11 @@ $ git commit -m "remove test.txt"		#提交master分支
 $ git checkout -- test.txt
 
 git checkout其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”。
+
+
+
+
+
+
+
+空文件夹并不在识别和提交范围
