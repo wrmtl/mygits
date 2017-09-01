@@ -1,0 +1,93 @@
+git checkout -b dev
+等价于
+git branch dev
+git checkout dev
+
+
+git branch		查看当前分支
+
+在当前分支下的工作
+{
+	git add readme.txt
+	git commint -m "branch test"
+	
+	git checkout master	切换回master分支，此时status没有添加readme文件
+	git merge dev		合并指定分支到当前分支
+	
+	git branch -d dev	删除master分支
+	
+	git branch		只剩下master分支
+}
+
+
+
+
+
+
+
+解决冲突
+git checkout -b featurel
+			修改
+
+git add readme.txt
+git commit -m "AND simple"
+
+
+git checkout master	修改
+git add readme.txt
+git commit -m "& simple"
+
+
+支持多分支提交，但分支合并时会有冲突需要解决
+
+
+git merge featurel	合并时冲突，有冲突文件readme.txt
+git status		both modified: readme.txt
+
+
+cat readme.txt		查看readme冲突信息
+<<<<<<< HEAD
+hello,my life
+=======
+hello,git
+>>>>>>> dev		显示双边信息，然后在此基础上修改
+
+
+
+再次修改（在使用git status还是显示both modified，但是已经修改，就差提交了）   
+add，commit 错误修正完毕
+
+
+git log --graph		查看分支合并图
+git log --graph --pretty=oneline --abbrev-commit
+
+
+git branch -d featurel		只删除分支，不删除分支信息
+
+
+
+
+
+
+
+
+
+
+
+通常，合并分支时，如果可能，Git会用Fast forward模式，但这种模式下，删除分支后，会丢掉分支信息。
+
+如果要强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。
+
+下面我们实战一下--no-ff方式的git merge：
+
+git checkout -b dev
+修改readme
+git add readme.txt
+git commit -m  "change readme"
+
+git checkout master
+
+git merge --no-off -m "merge with no-off" dev 	
+此次合并要创建一个新的commit，所以加上-m参数，把commit描述写进去。
+
+git log --graph --pretty=oneline --abbrev-commit	显示带分支信息

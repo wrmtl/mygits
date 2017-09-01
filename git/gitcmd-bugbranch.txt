@@ -1,0 +1,28 @@
+git stash	将原来在dev上的工作隐藏，（或当前分支隐藏）
+git checkout master	转回主分支
+
+git checkout -b issue-101	创建bug分支
+
+
+修复bug
+
+git add
+git commit
+git checkout master
+git merge --no-off -m "" issue-101
+git branch -d issue-101
+git checkout dev
+git status		工作现场干净??刚才的工作现场哪去了
+git stash list 		git把stash内容存到某个地方了，但需要恢复一下，
+
+git stash apply恢复，恢复后，stash内容并不删除，需要用git stashdrop来删除
+git stash pop是另一种方法，恢复的同时把stash内容删除
+
+
+再用git stash list查看，就看不到任何stash内容了：
+$ git stash list
+你可以多次stash，恢复的时候，先用git stash list查看，然后恢复指定的stash，用命令：
+$ git stash apply stash@{0}
+
+（猜测stash恢复后，dev分支是含有bug修复好的版本）
+
