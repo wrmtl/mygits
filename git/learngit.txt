@@ -17,20 +17,19 @@ git diff HEAD -- readme.txt	可以查看工作区和版本库里面最新版本的区别：
 回退快速，指针还原，然后顺便把工作区的文件更新
 
 
-git reflog	查找所有操作的commit id
+git reflog	查找所有操作命令的commit id
 
 
 工作区（Working Directory）
-
 版本库（Repository）	.git隐藏文件
-
 stage（index）暂存区	master分支
+
 
 LICENSE还从来没有被添加过，所以它的状态是Untracked。
 把提交的修改git add进入缓存区，git commit提交到分支
 
 
-工作区—git add—缓存区—git commit—版本库
+工作区  -----git add-----缓存区------git commit------版本库
 
 
 
