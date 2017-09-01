@@ -1,0 +1,11 @@
+绿色 modified：		文件存在于版本库，且版本库于暂存库不同，修改后提交，（版本			库，暂存库不同）
+
+绿色 new file：		新文件，add暂存库，未提交版本库（版本库，暂存库不同）
+
+红色 modified：		新文件，add暂存库，未提交版本库后，又在工作区修改（版本库				，暂存库，工作区都不相同）
+
+git status的顺序是，比较res和index的区别，比较index和workplace的区别
+因此存在，workplace修改add index后，未commit res,,git status 是绿色modified，
+再改变workplace，即使workplace和res相同，也会显示红色modified（表示res的和index不同，index和workplace不同，推出res和workplace不同，不比较res和workplace是否相同，只是add，commit（确实修改）的命令次数的识别，）
+
+git diff filename 	只用来比较index和workplace的区别

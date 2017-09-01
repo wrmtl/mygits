@@ -1,0 +1,131 @@
+tasklist 	查看所有进程
+netstat -ano	查看所有进程
+netstat -ano|findstr "port"	查看占用端口的程序
+
+
+
+
+
+
+taskkill /f /pid /im /t		杀死进程
+/PID  processid        指定要终止的进程的 PID。使用 TaskList 取得 PID。
+/IM   imagename        指定要终止的进程的映像名称。通配符 '*'可用来指定所有任务或			映像名称。
+/T                     终止指定的进程和由它启用的子进程。
+/F                     指定强制终止进程。
+
+
+/FI   filter           应用筛选器以选择一组任务。
+		       允许使用 "*"。例如，映像名称 eq acme*
+筛选器:
+    筛选器名      有效运算符                有效值
+    -----------   ---------------           -------------------------
+    STATUS        eq, ne                    RUNNING |
+                                            NOT RESPONDING | UNKNOWN
+    IMAGENAME     eq, ne                    映像名称
+    PID           eq, ne, gt, lt, ge, le    PID 值
+    SESSION       eq, ne, gt, lt, ge, le    会话编号。
+    CPUTIME       eq, ne, gt, lt, ge, le    CPU 时间，格式为
+                                            hh:mm:ss。
+                                            hh - 时，
+                                            mm - 分，ss - 秒
+    MEMUSAGE      eq, ne, gt, lt, ge, le    内存使用量，单位为 KB
+    USERNAME      eq, ne                    用户名，格式为 [domain\]user
+    MODULES       eq, ne                    DLL 名称
+    SERVICES      eq, ne                    服务名称
+    WINDOWTITLE   eq, ne                    窗口标题
+
+    说明
+    ----
+    1) 只有在应用筛选器的情况下，/IM 切换才能使用通配符 '*'。
+    2) 远程进程总是要强行 (/F) 终止。
+    3) 当指定远程机器时，不支持 "WINDOWTITLE" 和 "STATUS" 筛选器。
+
+
+
+
+
+
+
+
+mkdir filename		创建文件夹（可创建以.开头的文件夹）
+创建文件夹我们可以使用 md <folderName>或mkdir <folderName>命令来创建，其中md和mkdir都是建立新目录make directory的意思，完整命令是md [盘符:\][路径\]新目录名，比如：md c:\test\myfolder
+
+
+rd或rmdir	完整命令rd /s /q [盘符:\][路径\]新目录名
+/s		因为rd只能删除空的文件夹，而如果其中有子文件或子文件夹的时候就会停下来，这时我们加上/s就可以直接删除，但是删除过程中会提示你是否确定删除
+/q		对于懒癌患者我们有添加了/q，即quiet，安静模式
+		所以使用以上命令会完整删除你选中的整个文件夹。
+
+
+type NUL > filename		创建空文件（可创建以.开头的文件）
+echo [fileContent]>*.*，	echo myname>a.txt，创建非空文件夹
+
+
+删除一个或数个文件
+DEL [/P] [/F] [/S] [/Q] [/A[[:]attributes]] names
+ERASE [/P] [/F] [/S] [/Q] [/A[[:]attributes]] names
+
+  names         指定一个或多个文件或者目录列表。
+                通配符可用来删除多个文件。
+                如果指定了一个目录，该目录中的所
+                有文件都会被删除。
+
+  /P            删除每一个文件之前提示确认。
+  /F            强制删除只读文件。
+  /S            删除所有子目录中的指定的文件。
+  /Q            安静模式。删除全局通配符时，不要求确认
+  /A            根据属性选择要删除的文件
+  属性          R  只读文件                     S  系统文件
+                H  隐藏文件                     A  存档文件
+                I  无内容索引文件               L  重分析点
+                -  表示“否”的前缀
+
+
+
+
+
+
+
+dir /a:h		显示当前目录下的隐藏文件
+dir /a:s		显示当前目录下的系统文件
+dir /a:r		查看只读文件
+dir /a:a		查看当前的存档文件
+
+
+
+
+
+
+
+ATTRIB [+R | -R] [+A | -A ] [+S | -S] [+H | -H] [+I | -I]
+       [drive:][path][filename] [/S [/D] [/L]]
+
+  +   设置属性。
+  -   清除属性。
+  R   只读文件属性。
+  A   存档文件属性。
+  S   系统文件属性。
+  H   隐藏文件属性。
+  I   无内容索引文件属性。
+  X   无清理文件属性。
+  V   完整性属性。
+  [drive:][path][filename]
+      指定 attrib 要处理的文件。
+  /S  处理当前文件夹
+      及其所有子文件夹中的匹配文件。
+  /D  也处理文件夹。
+  /L  处理符号链接和
+      符号链接目标的属性
+
+
+
+
+
+
+
+
+
+重命名文件
+
+RENAME [drive:][path]filename1 filename2.
+REN [drive:][path]filename1 filename2.
