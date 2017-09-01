@@ -1,0 +1,10 @@
+ssh-keygen -t rsa -C "youremail@example.com"	设置公钥，秘钥
+
+git remote add origin git@github.com:wrmtl/mygits.git
+git remote add origin https://github.com/wrmtl/mygits		等价上面的
+
+git push -u origin master	推送远程库，并关联本地master分支和远程master分支
+git push origin master		关联后，可简化的推送命令
+
+
+git clone git@github.com:wrmtl/mygits.git	克隆一个本地库
