@@ -6,6 +6,10 @@ int main(){
 	scnaf("%d%d",&a,&b);
 	if(a>99)printf(hello,world);
 	else printf("hello,my life");
+<<<<<<< HEAD
 	printf("oneday,you will find:\nis not world have love,\nis you need love ,you craet love");
 	printf("love is world");
+=======
+	printf("oneday,you will find:\nis not world have love,\nis you need love and you craet love");
+>>>>>>> dev
 }
