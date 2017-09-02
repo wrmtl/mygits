@@ -1,0 +1,10 @@
+#include <stdio.h>
+int main(){
+	int a;
+	while(scanf("%d",&a)!=EOF){
+	
+	if(a>99)printf("the love is grow-up in giving\n");
+	else printf("the happiness is ending in suspicion\n";)
+	
+	}
+}
