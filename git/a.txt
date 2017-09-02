@@ -1,5 +1,10 @@
 #hello,world
 int main(){
+	
 	printf("hello,world\nhello,my life\n");
+	int a,b;
+	scnaf("%d%d",&a,&b);
+	if(a>99)printf(hello,world);
+	else printf("hello,my life");
 
 }
