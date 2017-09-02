@@ -6,5 +6,5 @@ int main(){
 	scnaf("%d%d",&a,&b);
 	if(a>99)printf(hello,world);
 	else printf("hello,my life");
-	printf("oneday,you will find,is not world have love,is you need love and you craet love");
+	printf("oneday,you will find:\nis not world have love,\nis you need love and you craet love");
 }
