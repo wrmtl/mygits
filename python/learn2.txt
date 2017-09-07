@@ -1,0 +1,455 @@
+可变对象：如，列表
+不可变对象：字符和字符串，元组
+数字和常用字符本就是对象，在python解释器运行时，便已经在内存中创建，不可改变，其它只不过是对其的引用
+
+如果你已经把my_abs()的函数定义保存为abstest.py文件了，那么，可以在该文件的当前目录下启动Python解释器，用from abstest import my_abs来导入my_abs()函数，注意abstest是文件名（不含.py扩展名）：
+
+
+
+
+class math:
+	PI=3.14
+	def __init__(self):
+		self.pi=3.1415
+
+math.PI		#显示3.14	
+math.pi		#报错		math has no attribute 'num'
+math().pi	#显示3.1415
+类，对象，实例的区别在于不同情况，不同方法，不同内存开辟，和解释器层的内在逻辑联系
+
+
+ class sss:
+...     PI=3.14
+...     def __init__(self):
+...             self.pi=3.1415
+...
+>>> sss
+<class __main__.sss at 0x02CEFA78>
+>>> sss()
+<__main__.sss instance at 0x0321F418>
+>>> c=sss
+>>> c
+<class __main__.sss at 0x02CEFA78>
+>>> t=sss()
+>>> t
+<__main__.sss instance at 0x0321F418>
+>>> sss.PI
+3.14
+>>> sss().PI
+3.14
+>>> sss().pi
+3.1415
+>>> sss.pi
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: class sss has no attribute 'pi'
+
+
+
+
+
+
+ class math:
+...     PI=3.14
+...     def __init__(self,name):
+...             self.pi=3.1415
+...             self.name=name
+...             print self.name
+...
+>>> math
+<class __main__.math at 0x0311FA78>
+>>> math.PI
+3.14
+>>> math('andy')
+andy
+<__main__.math instance at 0x0322F418>
+>>> math('dream')
+dream
+<__main__.math instance at 0x03233918>
+>>> c=math('andy')
+andy
+>>> c
+<__main__.math instance at 0x0322F418>
+>>> c.name
+'andy'
+
+
+
+
+
+
+
+
+
+义默认参数要牢记一点：默认参数必须指向不变对象
+def add_end(L=[]):
+    L.append('END')
+    return L
+
+def add_end(L=None):
+    if L is None:
+        L = []
+    L.append('END')
+    return L
+
+
+
+
+
+
+
+
+list="sfe"
+>>> list[1]='e'
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'str' object does not support item assignment
+>>> list[1]
+'f'
+
+
+分清变量名，和引用对象间的关系：list是变量名，list[1]则指向可变对象，列表
+list=[1,2,3]
+>>> lista=list
+>>> lista[1]=4
+>>> list
+[1, 4, 3]
+
+
+
+
+
+list这种数据类型虽然有下标，但很多其他数据类型是没有下标的，但是，只要是可迭代对象，无论有无下标，都可以迭代，
+> from collections import Iterable
+>>> isinstance('abc', Iterable) # str是否可迭代
+True
+>>> isinstance([1,2,3], Iterable) # list是否可迭代
+True
+>>> isinstance(123, Iterable) # 整数是否可迭代
+False
+
+
+
+python是在定义了基本的数据类型（对象化的）{int，float，list，tuple,}，和与之对应的方法和特性，将其他的数据和分析转化为，这些类型方法特征上的来实现的，关键之处的实现是在指针，
+c语言也是建立在此基础思路上的
+>>> ll.items()[1][1]
+19
+
+
+下标循环实现
+for i, value in enumerate(['A', 'B', 'C']):
+...     print(i, value)
+...
+0 A
+1 B
+2 C
+
+
+
+
+
+
+
+>>> ls=[(1,2),(3,4,5),(6,7,8,9)]
+>>> for x,y in ls:
+...     print x,y
+...
+1 2
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: too many values to unpack
+
+>>> ls=[1,2,3,4,5,6,7,8,9]
+>>> for x,y in ls:
+...     print x,y
+...
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'int' object is not iterable
+
+>>> ls=[[1,2],[3,4,5],[6,7,8,9],[10,11,12,13,14]]
+>>> for x,y in ls:
+...     print x,y
+...
+1 2
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: too many values to unpack
+>>> ls=[1,2,3,4,5,6]
+>>> for x,y in ls
+  File "<stdin>", line 1
+    for x,y in ls
+                
+SyntaxError: invalid syntax
+
+>>> for x,y in ls:
+...     print x,y
+...
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'int' object is not iterable
+>>> ls=[[1,2],[[3,4],[5,6]]]
+>>> for x,y in ls:
+...     print x,y
+...
+1 2
+[3, 4] [5, 6]
+
+>>> ls=[[[1],[2]]]
+>>> for x,y in ls:
+...     print x,y
+...
+[1] [2]
+
+>>> ls=[[1,2]]
+>>> for x,y in ls:
+...     print x,y
+...
+1 2
+
+
+
+
+
+
+
+列表生成器：
+[x * x for x in range(1, 11) if x % 2 == 0]
+[4, 16, 36, 64, 100]
+
+>>> d = {'x': 'A', 'y': 'B', 'z': 'C' }
+>>> [k + '=' + v for k, v in d.items()]
+['y=B', 'x=A', 'z=C']
+
+>>> L = ['Hello', 'World', 'IBM', 'Apple']
+>>> [s.lower() for s in L]
+['hello', 'world', 'ibm', 'apple']
+
+>>> import os # 导入os模块，模块的概念后面讲到
+>>> [d for d in os.listdir('.')] # os.listdir可以列出文件和目录
+['.emacs.d', '.ssh', '.Trash', 'Adlm', 'Applications', 'Desktop', 'Documents', 'Downloads', 'Library', 'Movies', 'Music', 'Pictures', 'Public', 'VirtualBox VMs', 'Workspace', 'XCode']
+
+使用内建的isinstance函数可以判断一个变量是不是字符串：
+
+>>> x = 'abc'
+>>> y = 123
+>>> isinstance(x, str)
+True
+>>> isinstance(y, str)
+False
+
+
+
+
+
+生成器：
+
+如果列表元素可以按照某种算法推算出来，那我们是否可以在循环的过程中不断推算出后续的元素呢？这样就不必创建完整的list，从而节省大量的空间。在Python中，这种一边循环一边计算的机制，称为生成器：generator。
+
+要创建一个generator，有很多种方法。第一种方法很简单，只要把一个列表生成式的[]改成()，就创建了一个generator：
+
+>>> L = [x * x for x in range(10)]
+>>> L
+[0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+>>> g = (x * x for x in range(10))
+>>> g
+<generator object <genexpr> at 0x1022ef630>
+
+next()函数获得generator的下一个返回值：
+>>> next(g)
+0
+>>> next(g)
+1
+>>> next(g)
+4
+>>> next(g)
+9
+>>> next(g)
+16
+>>> next(g)
+25
+>>> next(g)
+36
+>>> next(g)
+49
+>>> next(g)
+64
+>>> next(g)
+81
+>>> next(g)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+StopIteration
+
+上面这种不断调用next(g)实在是太变态了，正确的方法是使用for循环，因为generator也是可迭代对象：
+
+>>> g = (x * x for x in range(10))
+>>> for n in g:
+...     print(n)
+... 
+0
+1
+4
+9
+16
+25
+36
+49
+64
+81
+
+上面的函数和generator仅一步之遥。要把fib函数变成generator，只需要把print(b)改为yield b就可以了：
+def fib(max):
+    n, a, b = 0, 0, 1
+    while n < max:
+        yield b
+        a, b = b, a + b
+        n = n + 1
+    return 'done'
+
+但是用for循环调用generator时，发现拿不到generator的return语句的返回值。如果想要拿到返回值，必须捕获StopIteration错误，返回值包含在StopIteration的value中：
+
+>>> g = fib(6)
+>>> while True:
+...     try:
+...         x = next(g)
+...         print('g:', x)
+...     except StopIteration as e:
+...         print('Generator return value:', e.value)
+...         break
+...
+g: 1
+g: 1
+g: 2
+g: 3
+g: 5
+g: 8
+Generator return value: done
+
+
+
+
+
+
+>>> b=1
+>>> a=2
+>>> ll=[a,b]
+>>> ll
+[2, 1]
+>>> a=3
+>>> ll
+[2, 1]
+
+
+
+
+
+
+
+
+我们已经知道，可以直接作用于for循环的数据类型有以下几种：
+
+一类是集合数据类型，如list、tuple、dict、set、str等；
+
+一类是generator，包括生成器和带yield的generator function。
+
+这些可以直接作用于for循环的对象统称为可迭代对象：Iterable。
+
+可以使用isinstance()判断一个对象是否是Iterable对象：
+
+
+
+
+
+
+
+
+
+
+迭代器：
+而生成器不但可以作用于for循环，还可以被next()函数不断调用并返回下一个值，直到最后抛出StopIteration错误表示无法继续返回下一个值了。
+
+可以被next()函数调用并不断返回下一个值的对象称为迭代器：Iterator。
+
+可以使用isinstance()判断一个对象是否是Iterator对象：
+
+生成器都是Iterator对象，但list、dict、str虽然是Iterable，却不是Iterator。
+
+把list、dict、str等Iterable变成Iterator可以使用iter()函数：
+
+>>> isinstance(iter([]), Iterator)
+True
+>>> isinstance(iter('abc'), Iterator)
+True
+
+
+
+
+你可能会问，为什么list、dict、str等数据类型不是Iterator？
+
+这是因为Python的Iterator对象表示的是一个数据流，Iterator对象可以被next()函数调用并不断返回下一个数据，直到没有数据时抛出StopIteration错误。可以把这个数据流看做是一个有序序列，但我们却不能提前知道序列的长度，只能不断通过next()函数实现按需计算下一个数据，所以Iterator的计算是惰性的，只有在需要返回下一个数据时它才会计算。
+
+Iterator甚至可以表示一个无限大的数据流，例如全体自然数。而使用list是永远不可能存储全体自然数的。
+
+小结
+
+凡是可作用于for循环的对象都是Iterable类型；
+
+凡是可作用于next()函数的对象都是Iterator类型，它们表示一个惰性计算的序列；
+
+集合数据类型如list、dict、str等是Iterable但不是Iterator，不过可以通过iter()函数获得一个Iterator对象。
+
+Python的for循环本质上就是通过不断调用next()函数实现的
+
+for x in [1, 2, 3, 4, 5]:
+    pass
+实际上完全等价于：
+
+# 首先获得Iterator对象:
+it = iter([1, 2, 3, 4, 5])
+# 循环:
+while True:
+    try:
+        # 获得下一个值:
+        x = next(it)
+    except StopIteration:
+        # 遇到StopIteration就退出循环
+        break
+
+
+
+
+
+
+高级函数：
+
+一、变量可以指向函数
+
+>>> x = abs(-10)
+>>> x
+10
+但是，如果把函数本身赋值给变量呢？
+
+>>> f = abs
+>>> f
+<built-in function abs>
+
+二、函数名也是变量
+
+把abs指向10后，就无法通过abs(-10)调用该函数了！因为abs这个变量已经不指向求绝对值函数而是指向一个整数10！
+
+当然实际代码绝对不能这么写，这里是为了说明函数名也是变量。要恢复abs函数，请重启Python交互环境。
+
+注：由于abs函数实际上是定义在import builtins模块中的，所以要让修改abs变量的指向在其它模块也生效，要用import builtins; builtins.abs = 10。
+
+三、传入函数：
+
+既然变量可以指向函数，函数的参数能接收变量，那么一个函数就可以接收另一个函数作为参数，这种函数就称之为高阶函数。
+
+一个最简单的高阶函数：
+
+def add(x, y, f):
+    return f(x) + f(y)
+
+编写高阶函数，就是让函数的参数能够接收别的函数。
+把函数作为参数传入，这样的函数称为高阶函数，函数式编程就是指这种高度抽象的编程范式。
