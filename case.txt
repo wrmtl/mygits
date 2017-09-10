@@ -1,0 +1,24 @@
+通过本次设置python和pip的环境变量，
+得到了，在设置完环境变量的时候，需要重行打开命令行，
+因为，那个命令行加载的是以前进程的信息，包括环境变量，
+需要开启新的命令行，即开启新的进程
+
+
+
+
+将高品质的照片改为GIF格式时，会发现，他有着传统的素描的画出来的质感
+
+
+
+
+
+
+MinGW
+http://jaist.dl.sourceforge.net/project/mingw/Installer/mingw-get-setup.exe
+
+MinGW-Installation-Manager中选择（Mark for Installation）好后，installation中apply change
+
+配置环境变量：
+path（大写）		其bin文件路径
+include（大写）	其include文件路径
+lib（大写）	其lib文件路径
