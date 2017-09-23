@@ -6,6 +6,7 @@ git config --global user.name ""
 
 git init
 git add <path/filename>
+git add -u	提交所有改动的和删除的文件，不包括新文件
 git commit -m "注释"
 
 
